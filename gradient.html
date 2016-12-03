@@ -1,0 +1,85 @@
+<html>
+
+<head>
+	<title>image with radial gradient border</title>
+	<style>
+		article>section>* {
+			margin: 64px 0;
+		}
+		
+		img {
+			border-radius: 50%;
+			width: 128px;
+			height: 128px;
+			margin: 24px
+		}
+		/* #db4437  #0f9d58  #ffcd40 */
+		/*https://upload.wikimedia.org/wikipedia/commons/c/ca/Google_Chrome_for_Android_Icon_2016.svg*/
+		
+		#gradient-box-shadow {
+			box-shadow: 0 0 0 8px rgba(238, 238, 238, 1), 0 0 0 16px rgba(238, 238, 238, 0.6), 0 0 0 24px rgba(238, 238, 238, 0.4);
+		}
+		
+		#gradient-background-container {
+			display: inline-block;
+			background-image: radial-gradient( white 0%, white 51%, rgba(238, 238, 238, 1) 52%, rgba(238, 238, 238, 1) 57%, rgba(238, 238, 238, 0.6) 58%, rgba(238, 238, 238, 0.6) 64%, rgba(238, 238, 238, 0.4) 65%, rgba(238, 238, 238, 0.4) 70%, rgba(238, 238, 238, 0) 71%);
+		}
+		
+		#gradient-border-container img {
+			margin: 0;
+		}
+	</style>
+</head>
+
+<body>
+	<article>
+		<h1>image with radial gradient border</h1>
+		<section>
+			<header>apporach #1 - box-shadow:</header>
+			<section>
+				<img id="gradient-box-shadow" src="Google_Chrome_for_Android_Icon_2016.svg" />
+			</section>
+		</section>
+		<section>
+			<header>apporach #2 - background image</header>
+			<section id="gradient-background-container">
+				<img id="gradient-background-image" src="Google_Chrome_for_Android_Icon_2016.svg" />
+			</section>
+		</section>
+		<section>
+			<header>apporach #3 - svg(basic):</header>
+			<section>
+				<svg verion="1.1" width="176" height="176" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+					<g>
+						<circle cx="88" cy="88" r="88" fill="rgba(238,238,238,0.4)"></circle>
+						<circle cx="88" cy="88" r="80" fill="rgba(238,238,238,0.6)"></circle>
+						<circle cx="88" cy="88" r="72" fill="rgba(238,238,238,1)"></circle>
+					</g>
+					<image x="24" y="24" width="128" height="128" xlink:href="Google_Chrome_for_Android_Icon_2016.svg" />
+				</svg>
+			</section>
+		</section>
+		<section>
+			<header>apporach #4 - svg(radial gradient defs):</header>
+			<section>
+				<svg verion="1.1" width="176" height="176" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+					<defs>
+						<radialGradient id="radial-gradient-shadow">
+							<stop offset="0%" stop-color="white" />
+							<stop offset="73%" stop-color="rgba(238,238,238,1)" />
+							<stop offset="81%" stop-color="rgba(238,238,238,1)" />
+							<stop offset="82%" stop-color="rgba(238,238,238,0.6)" />
+							<stop offset="90%" stop-color="rgba(238,238,238,0.6)" />
+							<stop offset="91" stop-color="rgba(238,238,238,0.4)" />
+							<stop offset="100%" stop-color="rgba(238,238,238,0.4)" />
+						</radialGradient>
+					</defs>
+					<circle cx="88" cy="88" r="88" fill="url(#radial-gradient-shadow)"></circle>
+					<image x="24" y="24" width="128" height="128" xlink:href="Google_Chrome_for_Android_Icon_2016.svg" />
+				</svg>
+			</section>
+		</section>
+	</article>
+</body>
+
+</html>
