@@ -1,9 +1,8 @@
-
-What happened if I commit with email which is NOT owned by myself?
+# What happened if I commit with email which is NOT owned by myself?
 
 1. [Reference](https://api.github.com/repos/uncloak/uncloak.github.io/commits/e3907d07d6139bfa82c75204a98896d6bb42e230)
 
-2. [commit with invalid author(=) email](https://api.github.com/repos/ZXS66/messy/commits/f35e902e31843e6118c88c60f2362eb364ac7955)   [keep your email address private](https://help.github.com/articles/setting-your-email-in-git/)
+2. [commit with invalid author(=) email](https://api.github.com/repos/ZXS66/messy/commits/f35e902e31843e6118c88c60f2362eb364ac7955)   [keep your email address private](https://help.github.com/articles/setting-your-email-in-git/)    [add the email address to your GitHub account](https://help.github.com/articles/why-are-my-contributions-not-showing-up-on-my-profile/#common-reasons-that-contributions-are-not-counted)
 
 3. [commit with another person's email](https://api.github.com/repos/ZXS66/messy/commits/178631e091727f9c1c1ce4a7d31505b7a9d87f41) ([FisherTiger](https://github.com/FisherTiger))
 
@@ -263,4 +262,9 @@ What happened if I commit with email which is NOT owned by myself?
 }
 ```
 
-Conclusion: `result.commit.author.email` is the same as `result.author`. When user update&verify his/her email address, the commit message will also be changed. But the `result.commit.author.email` remains the same value, no matter who is the email owner. It (`result.commit.author.email`) can be and only can be set when commit.
+**Conclusion**: `result.commit.author.email` is the same as `result.author`. When user update&verify his/her email address, the commit message will also be changed. But the `result.commit.author.name` remains the same value, no matter who is the email owner. It (`result.commit.author.name`) can be and only can be set when commit.
+
+BTW, I think the owner of email binaryminded@gmail.com is [the author(uncloak)](https://github.com/uncloak) of [this commit](https://api.github.com/repos/uncloak/uncloak.github.io/commits/e3907d07d6139bfa82c75204a98896d6bb42e230) instead of [another person(tech-chieftain)](https://github.com/tech-chieftain) who declare that email in profile page. Because his *verified* email address is assassioxy@gmail.com. We can find the result from [here](https://api.github.com/repos/tech-chieftain/tech-chieftain.github.io/commits/165c7cae320be0fb3a521d600ce37e2a9fab49b5). 
+
+I have changed my backup github account primary email to 9jiang.jx@gmail.com, but [the profile page](https://github.com/FisherTiger) keep saying my email is zh_cn2008@hotmail (previous primary email of my backup github account). So may I say the email shown in github user profile page is the original one register github account?
+
