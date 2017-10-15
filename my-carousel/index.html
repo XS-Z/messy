@@ -15,18 +15,18 @@
 		}
 
 		#wrapper {
-			width: 80vw;
-			max-width: 32em;
-			height: 80vh;
-			max-width: 32em;
+			width: 16em;
+			/* height: 9em; */
+			/* height: 16em; */
 			margin: 10vh auto;
-			perspective: 1024px;
+			perspective: 128em;
+			position: relative
 			/* box-shadow: 0em 0em 0.1em gray inset; */
 		}
 
 		#container {
 			transform-style: preserve-3d;
-			transform-origin: center center;
+			/* transform-origin: center center; */
 			transition: transform 1s;
 			position: absolute;
 			width: 100%;
@@ -34,13 +34,17 @@
 		}
 
 		#container figure {
-			transform-origin: center center;
+			/* transform-origin: center center; */
 			transition: transform 1s;
 			position: absolute;
 			background-color: white;
 			box-shadow: 0em 0em 0.5em silver;
-			left: 50%;
-			top: 0;
+			display: block;
+			left: 1em;
+			top: 1em;
+			width:14em;
+			/* height:7em; */
+			/* height: 14em; */
 		}
 
 		#container figure img {
@@ -52,6 +56,14 @@
 			margin: 1em auto;
 			text-align: center;
 		}
+#controls{
+	position: fixed;
+	bottom: 0;
+	left:calc(50vw - 1.5em);
+	text-align: center;
+	margin: 3em auto;
+	font-size: 3em;
+}
 	</style>
 </head>
 
@@ -60,6 +72,10 @@
 		<article id="container">
 		</article>
 	</div>
+		<section id="controls">
+		<button id="prev">Prev</button>
+		<button id="next">Next</button>
+		</section>
 	<script>
 		/**
 		 * album information
@@ -115,7 +131,7 @@
 		/** rotate container DOM */
 		const rotateContainer = () => {
 			// dependencies: activeIndex, data.length
-			$container.style.transform = `translateZ(-${53 * data.length}px) rotateY(-${360/data.length * activeIndex}deg)`;
+			$container.style.transform = `translateZ(-${48 * data.length}px) rotateY(-${360/data.length * activeIndex}deg)`;
 		};
 
 		// initial rendering DOM tree
@@ -141,7 +157,7 @@
 			};
 			data.forEach((d, i) => {
 				let $figure = document.createElement("figure");
-				$figure.style.transform = `rotateY(${360/data.length * i}deg) translateZ(${53 * data.length}px)`;
+				$figure.style.transform = `rotateY(${360/data.length * i}deg) translateZ(${48 * data.length}px)`;
 				let $img = document.createElement("img");
 				$img.src = `images/${d.group}/${d.name}.jpg`;
 				$img.alt = d.slogan;
@@ -152,14 +168,23 @@
 				$figure.appendChild($figcaption);
 				$container.appendChild($figure);
 				rotateContainer();
+				document.getElementById("prev").addEventListener("click", prevSlide);
+				document.getElementById("next").addEventListener("click", nextSlide);
 			});
 
-			// bootstrap
-			setInterval(() => {
+			function nextSlide(){
 				activeIndex++;
 				// if (activeIndex === data.length) activeIndex = 0;
 				rotateContainer();
-			}, 2000);
+			}
+			function prevSlide(){
+				activeIndex--;
+				// if (activeIndex === -1) activeIndex = data.length - 1;
+				rotateContainer();
+			}
+
+			// bootstrap
+			setInterval(nextSlide, 2000);
 		})();
 	</script>
 </body>
