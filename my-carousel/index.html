@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-	<title></title>
+	<title>One Piece characters</title>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<style>
@@ -38,7 +38,7 @@
 			transition: transform 1s;
 			position: absolute;
 			background-color: white;
-			box-shadow: 0em 0em 0.5em silver;
+			/* box-shadow: 0em 0em 0.5em silver; */
 			display: block;
 			left: 1em;
 			top: 1em;
@@ -151,20 +151,22 @@
 						return "orange";
 					case 4:
 					default:
-						// hidden heros
+						// hidden characters
 						return "lightgray";
 				}
 			};
 			data.forEach((d, i) => {
+				let color = getFontColorByGroup(d.group);
 				let $figure = document.createElement("figure");
 				$figure.style.transform = `rotateY(${360/data.length * i}deg) translateZ(${48 * data.length}px)`;
+				$figure.style.boxShadow = `0 0 0.5em ${color}`;
 				let $img = document.createElement("img");
 				$img.src = `images/${d.group}/${d.name}.jpg`;
 				$img.alt = d.slogan;
 				$figure.appendChild($img);
 				let $figcaption = document.createElement("figcaption");
 				$figcaption.innerText = d.slogan;
-				$figcaption.style.color = getFontColorByGroup(d.group);
+				$figcaption.style.color = color;
 				$figure.appendChild($figcaption);
 				$container.appendChild($figure);
 				rotateContainer();
